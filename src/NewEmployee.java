@@ -2,7 +2,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
@@ -84,45 +90,45 @@ public class NewEmployee {
 		nameLabel.setBounds(77, 39, 134, 33);
 		mainPanel.add(nameLabel);
 		
-		JLabel salaryLabel = new JLabel("Salary");
-		salaryLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		salaryLabel.setBounds(77, 120, 134, 33);
-		mainPanel.add(salaryLabel);
-		
-		JLabel phoneLabel = new JLabel("Phone Number");
-		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		phoneLabel.setBounds(77, 199, 134, 33);
-		mainPanel.add(phoneLabel);
-		
-		JLabel lblNewLabel_3 = new JLabel("Email");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_3.setBounds(77, 282, 134, 33);
-		mainPanel.add(lblNewLabel_3);
-		
-		JLabel addressLabel = new JLabel("Address");
-		addressLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		addressLabel.setBounds(77, 366, 134, 33);
-		mainPanel.add(addressLabel);
-		
 		textFieldName = new JTextField();
 		textFieldName.setBounds(192, 35, 446, 50);
 		mainPanel.add(textFieldName);
 		textFieldName.setColumns(10);
+		
+		JLabel salaryLabel = new JLabel("Salary");
+		salaryLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		salaryLabel.setBounds(77, 120, 134, 33);
+		mainPanel.add(salaryLabel);
 		
 		textFieldSalary = new JTextField();
 		textFieldSalary.setColumns(10);
 		textFieldSalary.setBounds(192, 114, 446, 50);
 		mainPanel.add(textFieldSalary);
 		
+		JLabel phoneLabel = new JLabel("Phone Number");
+		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		phoneLabel.setBounds(77, 199, 134, 33);
+		mainPanel.add(phoneLabel);
+		
 		textFieldPhone = new JTextField();
 		textFieldPhone.setColumns(10);
 		textFieldPhone.setBounds(192, 193, 446, 50);
 		mainPanel.add(textFieldPhone);
 		
+		JLabel emailLabel = new JLabel("Email");
+		emailLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		emailLabel.setBounds(77, 282, 134, 33);
+		mainPanel.add(emailLabel);
+		
 		textFieldEmail = new JTextField();
 		textFieldEmail.setColumns(10);
 		textFieldEmail.setBounds(192, 276, 446, 50);
 		mainPanel.add(textFieldEmail);
+		
+		JLabel addressLabel = new JLabel("Address");
+		addressLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		addressLabel.setBounds(77, 366, 134, 33);
+		mainPanel.add(addressLabel);
 		
 		textFieldAddress = new JTextField();
 		textFieldAddress.setColumns(10);
@@ -138,10 +144,65 @@ public class NewEmployee {
 		btnOnborad.setFocusPainted(false);
 		btnOnborad.setBackground(new Color(107, 107, 107));
 		
+		// Onboard button action listener
+		btnOnborad.addActionListener(e -> {
+	        if (textFieldName.getText().trim().isEmpty() || 
+	            textFieldSalary.getText().trim().isEmpty() ||
+	            textFieldPhone.getText().trim().isEmpty() ||
+	            textFieldEmail.getText().trim().isEmpty() ||
+	            textFieldAddress.getText().trim().isEmpty()) {
+	            
+	            JOptionPane.showMessageDialog(frame, "Please fill all fields to onboard!", "Error", JOptionPane.ERROR_MESSAGE);
+	        } else {
+	            addNewEmployee();
+	            textFieldName.setText("");
+	            textFieldSalary.setText("");
+	            textFieldPhone.setText("");
+	            textFieldEmail.setText("");
+	            textFieldAddress.setText("");
+	        }
+	    });
+		
 		btnBack.addActionListener(e -> {
             // Close the current window and go back to the previous screen (if desired)
             frame.dispose(); // Close the current window
         });
+	}
+	
+	private void addNewEmployee() {
 		
+		Connection conn = null;
+        PreparedStatement ps = null;
+        
+		try {
+			conn = DatabaseUtil.getConnection();
+			String query = "INSERT INTO employee (name, salary, phone, email, address) VALUES (?, ?, ?, ?, ?)";
+            ps = conn.prepareStatement(query);
+            
+            ps.setString(1, textFieldName.getText().trim());
+            ps.setDouble(2, Double.parseDouble(textFieldSalary.getText().trim()));
+            ps.setLong(3, Long.parseLong(textFieldPhone.getText().trim()));
+            ps.setString(4, textFieldEmail.getText().trim());
+            ps.setString(5, textFieldAddress.getText().trim());
+            
+            int rowsAffected = ps.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(frame, "Employee onboarded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Failed to onboard employee. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+		} catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the resources
+            try {
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 	}
 }
