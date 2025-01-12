@@ -46,11 +46,19 @@ public class AllEmployee {
         // Fetch data from the database
         Object[][] data = fetchDataFromDatabase();
 
-        // Set the table model
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+     // Set the table model
+        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make all cells non-editable
+            }
+        };
         table = new JTable(model);
-        table.setCellSelectionEnabled(true);
-        table.setColumnSelectionAllowed(true);
 
         // Add the table to a scroll pane (to make it scrollable)
         JScrollPane scrollPane = new JScrollPane(table);
