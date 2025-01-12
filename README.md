@@ -38,29 +38,31 @@ Before running the project, ensure you have the following installed:
    cd employee-management-system
 
 2. **Set Up the Database**
-- Create a MySQL database and a table to store employee details.
-- Use the following schema as an example:
-  ```sql
-  CREATE DATABASE EmployeeDB;
-  USE EmployeeDB;
-  CREATE TABLE Employees (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(50) NOT NULL,
-      department VARCHAR(50),
-      salary DECIMAL(10, 2)
-  );
+   - Create a MySQL database and a table to store employee details.
+   - Use the following schema as an example:
+     ```sql
+     CREATE DATABASE EmployeeDB;
+     
+     USE EmployeeDB;
+     
+     CREATE TABLE Employees (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         name VARCHAR(50) NOT NULL,
+         department VARCHAR(50),
+         salary DECIMAL(10, 2)
+     );
 
   
 2. **Configure Database Connection**
-- Update the database credentials in your Java code:
-  ```bash
-  String url = "jdbc:mysql://localhost:3306/EmployeeDB";
-  String username = "your_username";
-  String password = "your_password";
+   - Update the database credentials in your Java code:
+     ```bash
+     String url = "jdbc:mysql://localhost:3306/EmployeeDB";
+     String username = "your_username";
+     String password = "your_password";
 
 4. **Run the Application**
-- Open the project in your preferred IDE.
-- Compile and run the main Java class to start the application.
+   - Open the project in your preferred IDE.
+   - Compile and run the main Java class to start the application.
 
 ## Usage
 
