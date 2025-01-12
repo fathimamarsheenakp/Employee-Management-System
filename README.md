@@ -33,9 +33,9 @@ Before running the project, ensure you have the following installed:
 ## Setup Instructions
 
 1. **Clone the Repository**  
-   ```bash
-   git clone <repository-url>
-   cd employee-management-system
+      ```bash
+      git clone <repository-url>
+      cd employee-management-system
 
 2. **Set Up the Database**
    - Create a MySQL database and a table to store employee details.
