@@ -32,7 +32,7 @@ public class FetchEmployee {
 
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 800, 600);
+        frame.setBounds(100, 100, 1000, 700); // Increased size of the frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fetch Employee");
         frame.getContentPane().setLayout(new BorderLayout());
@@ -40,13 +40,13 @@ public class FetchEmployee {
         // Header Panel
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(0, 128, 128));
-        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 60));
+        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); // Increased height of header
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
         JLabel lblEmployeeDetails = new JLabel("Employee Details");
-        lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 24));
+        lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30)); // Increased font size
         lblEmployeeDetails.setForeground(Color.WHITE);
-        headerPanel.add(lblEmployeeDetails);
+        headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER); // Center the text in header
 
         // Main Panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -54,22 +54,27 @@ public class FetchEmployee {
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(15, 15, 15, 15); // Increased padding for better spacing
 
         // ID Label and Text Field
-        JLabel lblId = new JLabel("Enter Employee ID:");
+        JLabel lblId = new JLabel("Employee ID:");
+        lblId.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for labels
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(lblId, gbc);
 
         textField = new JTextField(20);
+        textField.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for text field
         gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(textField, gbc);
 
         // Search Button
         JButton btnSearch = new JButton("Search");
         btnSearch.setBackground(new Color(0, 128, 128));
         btnSearch.setForeground(Color.WHITE);
+        btnSearch.setFont(new Font("Tahoma", Font.BOLD, 18)); // Larger font for button
         gbc.gridx = 2;
         mainPanel.add(btnSearch, gbc);
 
@@ -85,11 +90,11 @@ public class FetchEmployee {
         });
 
         // Employee Details Labels
-        lblGetName = createLabel("Name:", "", gbc, 0, 1, mainPanel);
-        lblGetSalary = createLabel("Salary:", "", gbc, 0, 2, mainPanel);
-        lblGetPhone = createLabel("Phone:", "", gbc, 0, 3, mainPanel);
-        lblGetEmail = createLabel("Email:", "", gbc, 0, 4, mainPanel);
-        lblGetAddress = createLabel("Address:", "", gbc, 0, 5, mainPanel);
+        lblGetName = createLabel("", gbc, 0, 1, mainPanel);
+        lblGetSalary = createLabel("", gbc, 0, 2, mainPanel);
+        lblGetPhone = createLabel("", gbc, 0, 3, mainPanel);
+        lblGetEmail = createLabel("", gbc, 0, 4, mainPanel);
+        lblGetAddress = createLabel("", gbc, 0, 5, mainPanel);
 
         // Bottom Panel for Back Button
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -100,7 +105,7 @@ public class FetchEmployee {
         btnBack.setPreferredSize(new Dimension(120, 40));
         btnBack.setBackground(Color.WHITE);
         btnBack.setForeground(new Color(0, 128, 128));
-        btnBack.setFont(new Font("Tahoma", Font.BOLD, 16));
+        btnBack.setFont(new Font("Tahoma", Font.BOLD, 18)); // Larger font for back button
         bottomPanel.add(btnBack);
 
         btnBack.addActionListener(new ActionListener() {
@@ -110,16 +115,18 @@ public class FetchEmployee {
         });
     }
 
-    private JLabel createLabel(String labelText, String value, GridBagConstraints gbc, int gridx, int gridy, JPanel panel) {
-        JLabel label = new JLabel(labelText);
+    private JLabel createLabel(String value, GridBagConstraints gbc, int gridx, int gridy, JPanel panel) {
+        JLabel label = new JLabel();
+        label.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for labels
         gbc.gridx = gridx;
         gbc.gridy = gridy;
         gbc.anchor = GridBagConstraints.WEST;
         panel.add(label, gbc);
 
         JLabel valueLabel = new JLabel(value);
+        valueLabel.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for value labels
         gbc.gridx = gridx + 1;
-        gbc.anchor = GridBagConstraints.EAST;
+        gbc.anchor = GridBagConstraints.WEST;
         panel.add(valueLabel, gbc);
 
         return valueLabel;
@@ -144,11 +151,13 @@ public class FetchEmployee {
                 email = rs.getString("email");
                 address = rs.getString("address");
 
-                lblGetName.setText("Name: " + name);
-                lblGetSalary.setText("Salary: " + salary);
-                lblGetPhone.setText("Phone: " + phone);
-                lblGetEmail.setText("Email: " + email);
-                lblGetAddress.setText("Address: " + address);
+                lblGetName.setText("<html><b>Name:</b>&nbsp;&nbsp;" + name + "</html>");
+                lblGetSalary.setText("<html><b>Salary:</b>&nbsp;&nbsp;" + salary + "</html>");
+                lblGetPhone.setText("<html><b>Phone:</b>&nbsp;&nbsp;" + phone + "</html>");
+                lblGetEmail.setText("<html><b>Email:</b>&nbsp;&nbsp;" + email + "</html>");
+                lblGetAddress.setText("<html><b>Address:</b>&nbsp;&nbsp;" + address + "</html>");
+
+
             } else {
                 JOptionPane.showMessageDialog(frame, "No employee found with the given ID!", "No Results", JOptionPane.WARNING_MESSAGE);
             }
