@@ -102,6 +102,15 @@ public class Home {
         JButton btnFetchEmployeeById = createButton("FETCH EMPLOYEE BY ID");
         gbc.gridy = 2;
         mainPanel.add(btnFetchEmployeeById, gbc);
+        
+        btnFetchEmployeeById.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create an instance of AllEmployee and set it visible in a new window
+                FetchEmployee fetchEmployee = new FetchEmployee();
+                fetchEmployee.frame.setVisible(true); // Open AllEmployee window
+            }
+        });
 
         JButton btnUpdateEmployee = createButton("UPDATE EMPLOYEE");
         gbc.gridy = 3;

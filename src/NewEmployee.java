@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -7,8 +8,6 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
@@ -58,6 +57,7 @@ public class NewEmployee {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		JLabel lblNewEmployee = new JLabel("New Employee");
 		lblNewEmployee.setForeground(new Color(0, 128, 128));

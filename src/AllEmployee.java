@@ -92,9 +92,6 @@ public class AllEmployee {
         bottomPanel.add(btnBack);
         frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH); // Add bottom panel to the south
 
-        // Ensure the frame resizes and is visible
-//        frame.pack(); // Ensure that the frame packs all components correctly
-//        frame.setLocationRelativeTo(null); // Center the frame on the screen
     }
 
     /**
