@@ -81,7 +81,7 @@ public class Home {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Create an instance of AllEmployee and set it visible in a new window
-                AllEmployee allEmployeeWindow = new AllEmployee();
+                AllEmployees allEmployeeWindow = new AllEmployees();
                 allEmployeeWindow.frame.setVisible(true); // Open AllEmployee window
             }
         });
