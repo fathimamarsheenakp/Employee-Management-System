@@ -32,7 +32,7 @@ public class FetchEmployee {
 
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 1000, 700); // Increased size of the frame
+        frame.setBounds(100, 100, 1000, 700); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fetch Employee");
         frame.getContentPane().setLayout(new BorderLayout());
@@ -40,13 +40,13 @@ public class FetchEmployee {
         // Header Panel
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(0, 128, 128));
-        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); // Increased height of header
+        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); 
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
         JLabel lblEmployeeDetails = new JLabel("Employee Details");
-        lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30)); // Increased font size
+        lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30)); 
         lblEmployeeDetails.setForeground(Color.WHITE);
-        headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER); // Center the text in header
+        headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER); 
 
         // Main Panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -54,18 +54,18 @@ public class FetchEmployee {
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 15, 15, 15); // Increased padding for better spacing
+        gbc.insets = new Insets(15, 15, 15, 15); 
 
         // ID Label and Text Field
         JLabel lblId = new JLabel("Employee ID:");
-        lblId.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for labels
+        lblId.setFont(new Font("Tahoma", Font.PLAIN, 18)); 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(lblId, gbc);
 
         textField = new JTextField(20);
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for text field
+        textField.setFont(new Font("Tahoma", Font.PLAIN, 18)); 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(textField, gbc);
@@ -74,7 +74,7 @@ public class FetchEmployee {
         JButton btnSearch = new JButton("Search");
         btnSearch.setBackground(new Color(0, 128, 128));
         btnSearch.setForeground(Color.WHITE);
-        btnSearch.setFont(new Font("Tahoma", Font.BOLD, 18)); // Larger font for button
+        btnSearch.setFont(new Font("Tahoma", Font.BOLD, 18)); 
         gbc.gridx = 2;
         mainPanel.add(btnSearch, gbc);
 
@@ -105,7 +105,7 @@ public class FetchEmployee {
         btnBack.setPreferredSize(new Dimension(120, 40));
         btnBack.setBackground(Color.WHITE);
         btnBack.setForeground(new Color(0, 128, 128));
-        btnBack.setFont(new Font("Tahoma", Font.BOLD, 18)); // Larger font for back button
+        btnBack.setFont(new Font("Tahoma", Font.BOLD, 18)); 
         bottomPanel.add(btnBack);
 
         btnBack.addActionListener(new ActionListener() {
@@ -117,14 +117,14 @@ public class FetchEmployee {
 
     private JLabel createLabel(String value, GridBagConstraints gbc, int gridx, int gridy, JPanel panel) {
         JLabel label = new JLabel();
-        label.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for labels
+        label.setFont(new Font("Tahoma", Font.PLAIN, 18)); 
         gbc.gridx = gridx;
         gbc.gridy = gridy;
         gbc.anchor = GridBagConstraints.WEST;
         panel.add(label, gbc);
 
         JLabel valueLabel = new JLabel(value);
-        valueLabel.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Larger font for value labels
+        valueLabel.setFont(new Font("Tahoma", Font.PLAIN, 18)); 
         gbc.gridx = gridx + 1;
         gbc.anchor = GridBagConstraints.WEST;
         panel.add(valueLabel, gbc);
@@ -138,7 +138,7 @@ public class FetchEmployee {
         ResultSet rs = null;
 
         try {
-            conn = DatabaseUtil.getConnection(); // Assume DatabaseUtil handles database connection
+            conn = DatabaseUtil.getConnection(); 
             String query = "SELECT * FROM employee WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, Integer.parseInt(textField.getText().trim()));
