@@ -94,20 +94,20 @@ public class Home {
         btnOnboardNewEmployee.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Create an instance of AllEmployee and set it visible in a new window
+                // Create an instance of NewEmployee and set it visible in a new window
                 NewEmployee newEmployee = new NewEmployee();
                 newEmployee.frame.setVisible(true); // Open AllEmployee window
             }
         });
 
-        JButton btnFetchEmployeeById = createButton("FETCH EMPLOYEE BY ID");
+        JButton btnFetchEmployeeById = createButton("FETCH EMPLOYEE");
         gbc.gridy = 2;
         mainPanel.add(btnFetchEmployeeById, gbc);
         
         btnFetchEmployeeById.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Create an instance of AllEmployee and set it visible in a new window
+                // Create an instance of FetchEmployee and set it visible in a new window
                 FetchEmployee fetchEmployee = new FetchEmployee();
                 fetchEmployee.frame.setVisible(true); // Open AllEmployee window
             }
@@ -116,15 +116,24 @@ public class Home {
         JButton btnUpdateEmployee = createButton("UPDATE EMPLOYEE");
         gbc.gridy = 3;
         mainPanel.add(btnUpdateEmployee, gbc);
+        
+        btnUpdateEmployee.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create an instance of UpdateEmployee and set it visible in a new window
+                UpdateEmployee updateEmployee = new UpdateEmployee();
+                updateEmployee.frame.setVisible(true); // Open AllEmployee window
+            }
+        });
 
-        JButton btnDeleteEmployeeById = createButton("DELETE EMPLOYEE BY ID");
+        JButton btnDeleteEmployeeById = createButton("DELETE EMPLOYEE");
         gbc.gridy = 4;
         mainPanel.add(btnDeleteEmployeeById, gbc);
         
         btnDeleteEmployeeById.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Create an instance of AllEmployee and set it visible in a new window
+                // Create an instance of DeleteEmployee and set it visible in a new window
                 DeleteEmployee deleteEmployee = new DeleteEmployee();
                 deleteEmployee.frame.setVisible(true); // Open AllEmployee window
             }
