@@ -39,7 +39,7 @@ public class NewEmployee {
         headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); 
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
-        JLabel lblNewEmployee = new JLabel("New Employee");
+        JLabel lblNewEmployee = new JLabel("NEW EMPLOYEE");
         lblNewEmployee.setFont(new Font("Tahoma", Font.BOLD, 30)); 
         lblNewEmployee.setForeground(Color.WHITE);
         headerPanel.add(lblNewEmployee, BorderLayout.CENTER); // Center the text in header
