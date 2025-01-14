@@ -5,17 +5,21 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UpdateEmployee {
 
     JFrame frame;
+    JLabel label;
     private JTextField textField, nameField, salaryField, phoneField, emailField, addressField;
     private JCheckBox chkName, chkSalary, chkPhone, chkEmail, chkAddress;
     private JButton btnSet, btnUpdate;
     private String name, email, address;
     private double salary;
     private long phone;
-    private String employeeId;
+    private int employeeId;
+    private Map<JTextField, JLabel> labelMap = new HashMap<>();
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -94,11 +98,17 @@ public class UpdateEmployee {
         });
 
         // Employee Details Editable Fields (Initially Disabled)
-        nameField = createTextField(gbc, 0, 2, mainPanel);
-        salaryField = createTextField(gbc, 0, 3, mainPanel);
-        phoneField = createTextField(gbc, 0, 4, mainPanel);
-        emailField = createTextField(gbc, 0, 5, mainPanel);
-        addressField = createTextField(gbc, 0, 6, mainPanel);
+        nameField = createTextField("Name", gbc, 0, 2, mainPanel);
+        salaryField = createTextField("Salary", gbc, 0, 3, mainPanel);
+        phoneField = createTextField("Phone", gbc, 0, 4, mainPanel);
+        emailField = createTextField("Email", gbc, 0, 5, mainPanel);
+        addressField = createTextField("Address", gbc, 0, 6, mainPanel);
+
+        nameField.setVisible(false);
+        salaryField.setVisible(false);
+        phoneField.setVisible(false);
+        emailField.setVisible(false);
+        addressField.setVisible(false);
 
         // Checkbox Panel for selecting editable fields (Styled Checkboxes)
         JPanel checkboxPanel = new JPanel();
@@ -122,6 +132,13 @@ public class UpdateEmployee {
         gbc.gridwidth = 3;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(checkboxPanel, gbc);
+
+        // Initially hide checkboxes and buttons
+        chkName.setVisible(false);
+        chkSalary.setVisible(false);
+        chkPhone.setVisible(false);
+        chkEmail.setVisible(false);
+        chkAddress.setVisible(false);
 
         // Set Button (Initially Hidden)
         btnSet = new JButton("Set");
@@ -151,13 +168,13 @@ public class UpdateEmployee {
                 btnUpdate.setVisible(true); // Show Update button after Set is clicked
             }
         });
-        
+
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 updateEmployee(); // Call the update method
+                resetFieldsAndCheckboxes();
             }
         });
-
 
         // Bottom Panel for Back Button
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -178,16 +195,29 @@ public class UpdateEmployee {
         });
     }
 
-    private JTextField createTextField(GridBagConstraints gbc, int gridx, int gridy, JPanel panel) {
+    private JTextField createTextField(String labelText, GridBagConstraints gbc, int gridx, int gridy, JPanel panel) {
+        JLabel label = new JLabel(labelText + ":");
+        label.setFont(new Font("Tahoma", Font.BOLD, 18));
+        label.setVisible(false);
+        gbc.gridx = gridx;
+        gbc.gridy = gridy;
+        gbc.anchor = GridBagConstraints.WEST;
+        panel.add(label, gbc);
+
         JTextField textField = new JTextField(20);
         textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        textField.setEditable(false); // Initially disabled
+        textField.setEnabled(false); // Initially disabled
+        textField.setBackground(Color.WHITE); 
         gbc.gridx = gridx + 1;
-        gbc.gridy = gridy;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(textField, gbc);
+
+        // Map the label to the corresponding text field
+        labelMap.put(textField, label);
+
         return textField;
     }
+
+
 
     private JCheckBox createStyledCheckBox(String text) {
         JCheckBox checkBox = new JCheckBox(text);
@@ -199,11 +229,85 @@ public class UpdateEmployee {
         return checkBox;
     }
 
+    private void showSetButtonAndCheckboxes() {
+        // Show the checkboxes and set button after fetching the employee data
+        chkName.setVisible(true);
+        chkSalary.setVisible(true);
+        chkPhone.setVisible(true);
+        chkEmail.setVisible(true);
+        chkAddress.setVisible(true);
+        btnSet.setVisible(true);
+
+        nameField.setVisible(true);
+        salaryField.setVisible(true);
+        phoneField.setVisible(true);
+        emailField.setVisible(true);
+        addressField.setVisible(true);
+        
+     // Show all labels associated with the fields
+        for (JTextField textField : labelMap.keySet()) {
+            JLabel label = labelMap.get(textField);
+            if (label != null) {
+                label.setVisible(true);
+            }
+        }
+
+        // Revalidate and repaint the panel to reflect changes
+        frame.revalidate();
+        frame.repaint();
+    }
+
+
+    private void setEditableFields() {
+        // Enable the fields based on the checkbox selection
+        if (chkName.isSelected()) {
+        	nameField.setEnabled(true);
+            nameField.setEditable(true);
+            nameField.setBackground(Color.WHITE);
+        }
+        if (chkSalary.isSelected()) {
+        	salaryField.setEnabled(true);
+            salaryField.setEditable(true);
+            salaryField.setBackground(Color.WHITE);
+        }
+        if (chkPhone.isSelected()) {
+        	phoneField.setEnabled(true);
+            phoneField.setEditable(true);
+            phoneField.setBackground(Color.WHITE);
+        }
+        if (chkEmail.isSelected()) {
+        	emailField.setEnabled(true);
+            emailField.setEditable(true);
+            emailField.setBackground(Color.WHITE);
+        }
+        if (chkAddress.isSelected()) {
+        	addressField.setEnabled(true);
+            addressField.setEditable(true);
+            addressField.setBackground(Color.WHITE);
+        }
+    }
+    
+    private void resetFieldsAndCheckboxes() {
+    	nameField.setEditable(false);
+    	salaryField.setEditable(false);
+    	phoneField.setEditable(false);
+    	emailField.setEditable(false);
+    	addressField.setEditable(false);
+    	
+    	// Unmark the checkboxes
+        chkName.setSelected(false);
+        chkSalary.setSelected(false);
+        chkPhone.setSelected(false);
+        chkEmail.setSelected(false);
+        chkAddress.setSelected(false);
+    }
+    
     private void fetchEmployee() {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
+        employeeId = Integer.parseInt(textField.getText().trim());
         try {
             conn = DatabaseUtil.getConnection();
             String query = "SELECT * FROM employee WHERE id = ?";
@@ -241,59 +345,7 @@ public class UpdateEmployee {
         }
     }
 
-    private void showSetButtonAndCheckboxes() {
-        // Show the checkboxes and set button after fetching the employee data
-        chkName.setEnabled(true);
-        chkSalary.setEnabled(true);
-        chkPhone.setEnabled(true);
-        chkEmail.setEnabled(true);
-        chkAddress.setEnabled(true);
-        btnSet.setVisible(true);
-    }
-
-    private void setEditableFields() {
-        if (chkName.isSelected()) {
-            nameField.setEditable(true);
-        }
-        if (chkSalary.isSelected()) {
-            salaryField.setEditable(true);
-        }
-        if (chkPhone.isSelected()) {
-            phoneField.setEditable(true);
-        }
-        if (chkEmail.isSelected()) {
-            emailField.setEditable(true);
-        }
-        if (chkAddress.isSelected()) {
-            addressField.setEditable(true);
-        }
-    }
-
     private void updateEmployee() {
-        String employeeIdText = textField.getText().trim();
-        
-        // Debugging: Print the employee ID to confirm it's being read correctly
-        System.out.println("Entered Employee ID: " + employeeIdText);
-
-        if (employeeIdText.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Please enter the Employee ID!", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Exit if the ID is empty
-        }
-
-        int employeeId = 0;
-        try {
-            employeeId = Integer.parseInt(employeeIdText); // Now safe to parse
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, "Invalid Employee ID!", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Exit if the ID is invalid
-        }
-
-        name = nameField.getText();
-        salary = Double.parseDouble(salaryField.getText());
-        phone = Long.parseLong(phoneField.getText());
-        email = emailField.getText();
-        address = addressField.getText();
-
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -301,18 +353,20 @@ public class UpdateEmployee {
             conn = DatabaseUtil.getConnection();
             String query = "UPDATE employee SET name = ?, salary = ?, phone = ?, email = ?, address = ? WHERE id = ?";
             pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, name);
-            pstmt.setDouble(2, salary);
-            pstmt.setLong(3, phone);
-            pstmt.setString(4, email);
-            pstmt.setString(5, address);
+
+            pstmt.setString(1, nameField.getText());
+            pstmt.setDouble(2, Double.parseDouble(salaryField.getText()));
+            pstmt.setLong(3, Long.parseLong(phoneField.getText()));
+            pstmt.setString(4, emailField.getText());
+            pstmt.setString(5, addressField.getText());
             pstmt.setInt(6, employeeId);
 
             int rowsUpdated = pstmt.executeUpdate();
+
             if (rowsUpdated > 0) {
-                JOptionPane.showMessageDialog(frame, "Employee details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Employee details updated successfully!");
             } else {
-                JOptionPane.showMessageDialog(frame, "Failed to update employee details!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Error updating employee details!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -326,5 +380,4 @@ public class UpdateEmployee {
             }
         }
     }
-
 }
