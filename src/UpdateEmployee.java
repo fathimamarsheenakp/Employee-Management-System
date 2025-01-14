@@ -15,6 +15,7 @@ public class UpdateEmployee {
     private String name, email, address;
     private double salary;
     private long phone;
+    private String employeeId;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -99,16 +100,16 @@ public class UpdateEmployee {
         emailField = createTextField(gbc, 0, 5, mainPanel);
         addressField = createTextField(gbc, 0, 6, mainPanel);
 
-        // Checkbox Panel for selecting editable fields (Initially Hidden)
+        // Checkbox Panel for selecting editable fields (Styled Checkboxes)
         JPanel checkboxPanel = new JPanel();
         checkboxPanel.setLayout(new GridLayout(1, 5));
         checkboxPanel.setBackground(Color.WHITE);
 
-        chkName = new JCheckBox("Name");
-        chkSalary = new JCheckBox("Salary");
-        chkPhone = new JCheckBox("Phone");
-        chkEmail = new JCheckBox("Email");
-        chkAddress = new JCheckBox("Address");
+        chkName = createStyledCheckBox("Name");
+        chkSalary = createStyledCheckBox("Salary");
+        chkPhone = createStyledCheckBox("Phone");
+        chkEmail = createStyledCheckBox("Email");
+        chkAddress = createStyledCheckBox("Address");
 
         checkboxPanel.add(chkName);
         checkboxPanel.add(chkSalary);
@@ -150,6 +151,13 @@ public class UpdateEmployee {
                 btnUpdate.setVisible(true); // Show Update button after Set is clicked
             }
         });
+        
+        btnUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                updateEmployee(); // Call the update method
+            }
+        });
+
 
         // Bottom Panel for Back Button
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -179,6 +187,16 @@ public class UpdateEmployee {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(textField, gbc);
         return textField;
+    }
+
+    private JCheckBox createStyledCheckBox(String text) {
+        JCheckBox checkBox = new JCheckBox(text);
+        checkBox.setFont(new Font("Tahoma", Font.BOLD, 16)); // Set font style and size
+        checkBox.setForeground(new Color(0, 128, 128)); // Set text color
+        checkBox.setBackground(Color.WHITE); // Set background color
+        checkBox.setFocusPainted(false); // Remove focus border
+        checkBox.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 128), 1)); // Add a border
+        return checkBox;
     }
 
     private void fetchEmployee() {
@@ -234,7 +252,6 @@ public class UpdateEmployee {
     }
 
     private void setEditableFields() {
-        // Enable the fields based on selected checkboxes
         if (chkName.isSelected()) {
             nameField.setEditable(true);
         }
@@ -251,4 +268,63 @@ public class UpdateEmployee {
             addressField.setEditable(true);
         }
     }
+
+    private void updateEmployee() {
+        String employeeIdText = textField.getText().trim();
+        
+        // Debugging: Print the employee ID to confirm it's being read correctly
+        System.out.println("Entered Employee ID: " + employeeIdText);
+
+        if (employeeIdText.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please enter the Employee ID!", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Exit if the ID is empty
+        }
+
+        int employeeId = 0;
+        try {
+            employeeId = Integer.parseInt(employeeIdText); // Now safe to parse
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Invalid Employee ID!", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Exit if the ID is invalid
+        }
+
+        name = nameField.getText();
+        salary = Double.parseDouble(salaryField.getText());
+        phone = Long.parseLong(phoneField.getText());
+        email = emailField.getText();
+        address = addressField.getText();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DatabaseUtil.getConnection();
+            String query = "UPDATE employee SET name = ?, salary = ?, phone = ?, email = ?, address = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, name);
+            pstmt.setDouble(2, salary);
+            pstmt.setLong(3, phone);
+            pstmt.setString(4, email);
+            pstmt.setString(5, address);
+            pstmt.setInt(6, employeeId);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(frame, "Employee details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Failed to update employee details!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(frame, "Error updating employee details!", "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
