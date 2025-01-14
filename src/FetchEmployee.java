@@ -44,7 +44,7 @@ public class FetchEmployee {
         headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); 
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
-        JLabel lblEmployeeDetails = new JLabel("Employee Details");
+        JLabel lblEmployeeDetails = new JLabel("EMPLOYEE DETAILS");
         lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30)); 
         lblEmployeeDetails.setForeground(Color.WHITE);
         headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER); 
