@@ -27,7 +27,7 @@ public class NewEmployee {
 
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 1000, 700); // Same size as FetchEmployee frame
+        frame.setBounds(100, 100, 1000, 700); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("New Employee");
         frame.getContentPane().setLayout(new BorderLayout());
@@ -36,11 +36,11 @@ public class NewEmployee {
         // Header Panel
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(0, 128, 128));
-        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); // Same height as FetchEmployee header
+        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80)); 
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
         JLabel lblNewEmployee = new JLabel("New Employee");
-        lblNewEmployee.setFont(new Font("Tahoma", Font.BOLD, 30)); // Same font size
+        lblNewEmployee.setFont(new Font("Tahoma", Font.BOLD, 30)); 
         lblNewEmployee.setForeground(Color.WHITE);
         headerPanel.add(lblNewEmployee, BorderLayout.CENTER); // Center the text in header
 
@@ -50,7 +50,7 @@ public class NewEmployee {
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(15, 15, 15, 15); // Same padding
+        gbc.insets = new Insets(15, 15, 15, 15); 
 
         // Labels and Text Fields
         addLabelAndTextField("Name:", txtName = new JTextField(20), mainPanel, gbc, 0);
@@ -63,7 +63,7 @@ public class NewEmployee {
         JButton btnAdd = new JButton("Onboard");
         btnAdd.setBackground(new Color(0, 128, 128));
         btnAdd.setForeground(Color.WHITE);
-        btnAdd.setFont(new Font("Tahoma", Font.BOLD, 18)); // Same font
+        btnAdd.setFont(new Font("Tahoma", Font.BOLD, 18)); 
         gbc.gridx = 1;
         gbc.gridy = 5;
         mainPanel.add(btnAdd, gbc);
@@ -86,7 +86,7 @@ public class NewEmployee {
         btnBack.setPreferredSize(new Dimension(120, 40));
         btnBack.setBackground(Color.WHITE);
         btnBack.setForeground(new Color(0, 128, 128));
-        btnBack.setFont(new Font("Tahoma", Font.BOLD, 18)); // Same font
+        btnBack.setFont(new Font("Tahoma", Font.BOLD, 18)); 
         bottomPanel.add(btnBack);
 
         btnBack.addActionListener(new ActionListener() {
@@ -98,13 +98,13 @@ public class NewEmployee {
 
     private void addLabelAndTextField(String labelText, JTextField textField, JPanel panel, GridBagConstraints gbc, int gridy) {
         JLabel label = new JLabel(labelText);
-        label.setFont(new Font("Tahoma", Font.BOLD, 18)); // Set the label font to bold
+        label.setFont(new Font("Tahoma", Font.BOLD, 18)); 
         gbc.gridx = 0;
         gbc.gridy = gridy;
         gbc.anchor = GridBagConstraints.WEST;
         panel.add(label, gbc);
 
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 18)); // Same font size for text field
+        textField.setFont(new Font("Tahoma", Font.PLAIN, 18)); 
         gbc.gridx = 1;
         panel.add(textField, gbc);
     }
@@ -133,7 +133,7 @@ public class NewEmployee {
         PreparedStatement pstmt = null;
 
         try {
-            conn = DatabaseUtil.getConnection(); // Assume DatabaseUtil handles database connection
+            conn = DatabaseUtil.getConnection(); 
             String query = "INSERT INTO employee (name, salary, phone, email, address) VALUES (?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, txtName.getText().trim());
