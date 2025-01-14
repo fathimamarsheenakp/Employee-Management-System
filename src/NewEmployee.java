@@ -31,6 +31,7 @@ public class NewEmployee {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("New Employee");
         frame.getContentPane().setLayout(new BorderLayout());
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Open the frame in maximized state
 
         // Header Panel
         JPanel headerPanel = new JPanel();

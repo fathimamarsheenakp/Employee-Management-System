@@ -37,6 +37,7 @@ public class Home {
         frame.setBounds(100, 100, 844, 625);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout(10, 10));
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Open the frame in maximized state
         
         // Header Panel
         JPanel headerPanel = new JPanel();
@@ -119,6 +120,15 @@ public class Home {
         JButton btnDeleteEmployeeById = createButton("DELETE EMPLOYEE BY ID");
         gbc.gridy = 4;
         mainPanel.add(btnDeleteEmployeeById, gbc);
+        
+        btnDeleteEmployeeById.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create an instance of AllEmployee and set it visible in a new window
+                DeleteEmployee deleteEmployee = new DeleteEmployee();
+                deleteEmployee.frame.setVisible(true); // Open AllEmployee window
+            }
+        });
 
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
     }

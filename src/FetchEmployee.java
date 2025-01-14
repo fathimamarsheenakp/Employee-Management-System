@@ -36,6 +36,7 @@ public class FetchEmployee {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Fetch Employee");
         frame.getContentPane().setLayout(new BorderLayout());
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Open the frame in maximized state
 
         // Header Panel
         JPanel headerPanel = new JPanel();
