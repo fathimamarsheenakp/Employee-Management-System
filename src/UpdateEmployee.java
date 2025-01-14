@@ -50,7 +50,7 @@ public class UpdateEmployee {
         headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80));
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
-        JLabel lblEmployeeDetails = new JLabel("Update Employee Details");
+        JLabel lblEmployeeDetails = new JLabel("UPDATE EMPLOYEE DETAILS");
         lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblEmployeeDetails.setForeground(Color.WHITE);
         headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER);
