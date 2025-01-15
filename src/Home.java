@@ -37,6 +37,7 @@ public class Home {
         frame.setBounds(100, 100, 844, 625);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout(10, 10));
+        frame.setTitle("Employee Management System");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Open the frame in maximized state
         
         // Header Panel
@@ -140,6 +141,18 @@ public class Home {
         });
 
         frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
+        
+     // Create Back button
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        JButton btnBack = new JButton("Close");
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnBack.setBackground(Color.RED);
+        btnBack.setForeground(Color.WHITE);
+        btnBack.setFocusPainted(false);
+        btnBack.setPreferredSize(new Dimension(150, 40));
+        btnBack.addActionListener(e -> frame.dispose()); // Close the window
+        bottomPanel.add(btnBack);
+        frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
     }
 
     /**
