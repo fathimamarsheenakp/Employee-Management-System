@@ -36,7 +36,7 @@ public class AllEmployees {
 
 
         // Define the column names
-        String[] columnNames = {"ID", "Name", "Salary", "Phone", "Email", "Address"};
+        String[] columnNames = {"ID", "NAME", "SALARY", "PHONE NUMBER", "EMAIL", "ADDRESS"};
 
         // Fetch data from the database
         Object[][] data = fetchDataFromDatabase();
@@ -76,25 +76,33 @@ public class AllEmployees {
         // Customize table header
         JTableHeader tableHeader = table.getTableHeader();
         tableHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
-        tableHeader.setBackground(new Color(0, 128, 128));
-        tableHeader.setForeground(Color.WHITE);
+        tableHeader.setBackground(Color.WHITE);
+        tableHeader.setForeground(new Color(0, 128, 128));
+        
+     // Match header height to row height
+        tableHeader.setPreferredSize(new Dimension(tableHeader.getPreferredSize().width, table.getRowHeight()));
 
         // Add the table to a scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-        // Add a header panel
+     // Header Panel
         JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(0, 128, 128));
-        headerPanel.setLayout(new BorderLayout());
-
+        headerPanel.setBackground(new Color(0, 128, 128)); // Light blue
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+        
+     // Set the preferred height for the header panel
+        headerPanel.setPreferredSize(new Dimension(headerPanel.getPreferredSize().width, 100));
+        
+     // Add vertical space to center the components
+        headerPanel.add(Box.createVerticalStrut(30)); 
+        
         JLabel lblTitle = new JLabel("EMPLOYEES DATA");
         lblTitle.setFont(new Font("Tahoma", Font.BOLD, 28));
+        lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblTitle.setForeground(Color.WHITE);
-        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-        headerPanel.add(lblTitle, BorderLayout.CENTER);
-
+        headerPanel.add(lblTitle);
+        
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
         // Create Back button
