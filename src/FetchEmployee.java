@@ -89,14 +89,20 @@ public class FetchEmployee {
 
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (textField.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(frame, "Please enter the ID to search!", "Error", JOptionPane.ERROR_MESSAGE);
+                String employeeId = textField.getText().trim();
+
+                // Validation pattern for Employee ID (numeric only)
+                if (!employeeId.matches("\\d+")) {
+                    JOptionPane.showMessageDialog(frame, "Invalid Employee ID! Please enter a numeric value.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                } else if (employeeId.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please enter the Employee ID to search!", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     fetchEmployee();
                     textField.setText("");
                 }
             }
         });
+
 
         // Employee Details Labels
         lblGetName = createLabel("", gbc, 0, 1, mainPanel);
