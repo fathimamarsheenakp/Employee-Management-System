@@ -44,7 +44,7 @@ public class DeleteEmployee {
         headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80));
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
 
-        JLabel lblEmployeeDetails = new JLabel("Employee Details");
+        JLabel lblEmployeeDetails = new JLabel("EMPLOYEE DETAILS");
         lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblEmployeeDetails.setForeground(Color.WHITE);
         headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER);
@@ -131,14 +131,17 @@ public class DeleteEmployee {
         bottomPanel.setBackground(new Color(0, 128, 128));
         frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 
+     // Create Back button
+        JPanel bottomPanel1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         JButton btnBack = new JButton("Back");
-        btnBack.setPreferredSize(new Dimension(120, 40));
-        btnBack.setBackground(Color.WHITE);
-        btnBack.setForeground(new Color(0, 128, 128));
-        btnBack.setFont(new Font("Tahoma", Font.BOLD, 18));
-        bottomPanel.add(btnBack);
-
-        btnBack.addActionListener(e -> frame.dispose());
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnBack.setBackground(new Color(0, 128, 128));
+        btnBack.setForeground(Color.WHITE);
+        btnBack.setFocusPainted(false);
+        btnBack.setPreferredSize(new Dimension(150, 40));
+        btnBack.addActionListener(e -> frame.dispose()); // Close the window
+        bottomPanel1.add(btnBack);
+        frame.getContentPane().add(bottomPanel1, BorderLayout.SOUTH);
     }
 
     private JLabel createLabel(String value, GridBagConstraints gbc, int gridx, int gridy, JPanel panel) {
