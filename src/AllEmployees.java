@@ -88,7 +88,7 @@ public class AllEmployees {
         headerPanel.setBackground(new Color(0, 128, 128));
         headerPanel.setLayout(new BorderLayout());
 
-        JLabel lblTitle = new JLabel("Employees Data");
+        JLabel lblTitle = new JLabel("EMPLOYEES DATA");
         lblTitle.setFont(new Font("Tahoma", Font.BOLD, 28));
         lblTitle.setForeground(Color.WHITE);
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
