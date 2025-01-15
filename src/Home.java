@@ -165,7 +165,7 @@ public class Home {
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setBorderPainted(false);
-        button.setPreferredSize(new Dimension(300, 50));
+        button.setPreferredSize(new Dimension(500, 50));
         
      // Add hover effect to change background color
         button.addMouseListener(new java.awt.event.MouseAdapter() {
