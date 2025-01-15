@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,12 +88,19 @@ public class DeleteEmployee {
         gbc.gridx = 2;
         mainPanel.add(btnSearch, gbc);
 
-        btnSearch.addActionListener(e -> {
-            if (textField.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Please enter the ID to search!", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                fetchEmployee();
-                textField.setText("");
+        btnSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String employeeId = textField.getText().trim();
+
+                // Validation pattern for Employee ID (numeric only)
+                if (!employeeId.matches("\\d+")) {
+                    JOptionPane.showMessageDialog(frame, "Invalid Employee ID! Please enter a numeric value.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                } else if (employeeId.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Please enter the Employee ID to search!", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    fetchEmployee();
+                    textField.setText("");
+                }
             }
         });
 
