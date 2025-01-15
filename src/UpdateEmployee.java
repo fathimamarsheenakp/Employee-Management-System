@@ -44,16 +44,24 @@ public class UpdateEmployee {
         frame.getContentPane().setLayout(new BorderLayout());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Open the frame in maximized state
 
-        // Header Panel
+     // Header Panel
         JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(0, 128, 128));
-        headerPanel.setPreferredSize(new Dimension(frame.getWidth(), 80));
+        headerPanel.setBackground(new Color(0, 128, 128)); // Light blue
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+        
+     // Set the preferred height for the header panel
+        headerPanel.setPreferredSize(new Dimension(headerPanel.getPreferredSize().width, 100));
+        
+     // Add vertical space to center the components
+        headerPanel.add(Box.createVerticalStrut(30)); 
+        
+        JLabel lblTitle = new JLabel("UPDATE EMPLOYEE DETAILS");
+        lblTitle.setFont(new Font("Tahoma", Font.BOLD, 28));
+        lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblTitle.setForeground(Color.WHITE);
+        headerPanel.add(lblTitle);
+        
         frame.getContentPane().add(headerPanel, BorderLayout.NORTH);
-
-        JLabel lblEmployeeDetails = new JLabel("UPDATE EMPLOYEE DETAILS");
-        lblEmployeeDetails.setFont(new Font("Tahoma", Font.BOLD, 30));
-        lblEmployeeDetails.setForeground(Color.WHITE);
-        headerPanel.add(lblEmployeeDetails, BorderLayout.CENTER);
 
         // Main Panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
