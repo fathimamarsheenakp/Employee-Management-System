@@ -117,23 +117,51 @@ public class NewEmployee {
     }
 
     private boolean validateFields() {
-        if (txtName.getText().trim().isEmpty() || txtSalary.getText().trim().isEmpty() ||
-            txtPhone.getText().trim().isEmpty() || txtEmail.getText().trim().isEmpty() ||
-            txtAddress.getText().trim().isEmpty()) {
+        String name = txtName.getText().trim();
+        String salary = txtSalary.getText().trim();
+        String phone = txtPhone.getText().trim();
+        String email = txtEmail.getText().trim();
+        String address = txtAddress.getText().trim();
+
+        // Check for empty fields
+        if (name.isEmpty() || salary.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "All fields are required!", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
+        // Validate name (allow only alphabets and spaces)
+        if (!name.matches("[a-zA-Z\\s]+")) {
+            JOptionPane.showMessageDialog(frame, "Name must contain only alphabets and spaces!", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // Validate salary (must be a positive number)
         try {
-            Double.parseDouble(txtSalary.getText().trim());
-            Long.parseLong(txtPhone.getText().trim());
+            double salaryValue = Double.parseDouble(salary);
+            if (salaryValue <= 0) {
+                JOptionPane.showMessageDialog(frame, "Salary must be a positive number!", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame, "Salary must be a number and Phone must be numeric!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Salary must be a valid number!", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // Validate phone number (must be 10 digits)
+        if (!phone.matches("\\d{10}")) {
+            JOptionPane.showMessageDialog(frame, "Phone number must be exactly 10 digits!", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // Validate email (basic email pattern)
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            JOptionPane.showMessageDialog(frame, "Email must be in a valid format (e.g., user@example.com)!", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         return true;
     }
+
 
     private void addEmployee() {
         Connection conn = null;
