@@ -85,7 +85,7 @@ public class UpdateEmployee {
         gbc.anchor = GridBagConstraints.WEST;
         mainPanel.add(textField, gbc);
 
-        // Search Button
+     // Search Button
         JButton btnSearch = new JButton("Search");
         btnSearch.setBackground(new Color(0, 128, 128));
         btnSearch.setForeground(Color.WHITE);
@@ -95,15 +95,20 @@ public class UpdateEmployee {
 
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (textField.getText().trim().isEmpty()) {
+                String idPattern = "^[0-9]+$"; // Example: Only numeric IDs are allowed
+                String enteredID = textField.getText().trim();
+
+                if (enteredID.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "Please enter the ID to search!", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if (!enteredID.matches(idPattern)) {
+                    JOptionPane.showMessageDialog(frame, "Invalid ID! Only numeric IDs are allowed.", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    fetchEmployee();
-                    textField.setText("");
-                    showSetButtonAndCheckboxes();
+                    fetchEmployee(); // Call the method to fetch employee details
+                    textField.setText(""); // Clear the input field after search
                 }
             }
         });
+
 
         // Employee Details Editable Fields (Initially Disabled)
         nameField = createTextField("Name", gbc, 0, 2, mainPanel);
@@ -179,8 +184,10 @@ public class UpdateEmployee {
 
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                updateEmployee(); // Call the update method
-                resetFieldsAndCheckboxes();
+                if (validateInputs()) {
+                    updateEmployee(); // Call the update method if inputs are valid
+                    resetFieldsAndCheckboxes();
+                }
             }
         });
 
@@ -294,6 +301,37 @@ public class UpdateEmployee {
         }
     }
     
+    private boolean validateInputs() {
+        String namePattern = "^[a-zA-Z\\s]+$";
+        String salaryPattern = "^\\d+(\\.\\d{1,2})?$";
+        String phonePattern = "^\\d{10}$";
+        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        String addressPattern = "^[a-zA-Z0-9\\s,.-]+$";
+
+        if (chkName.isSelected() && !nameField.getText().trim().matches(namePattern)) {
+            JOptionPane.showMessageDialog(frame, "Invalid Name! Only alphabets and spaces are allowed.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (chkSalary.isSelected() && !salaryField.getText().trim().matches(salaryPattern)) {
+            JOptionPane.showMessageDialog(frame, "Invalid Salary! Only numeric values are allowed.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (chkPhone.isSelected() && !phoneField.getText().trim().matches(phonePattern)) {
+            JOptionPane.showMessageDialog(frame, "Invalid Phone! Enter a valid 10-digit number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (chkEmail.isSelected() && !emailField.getText().trim().matches(emailPattern)) {
+            JOptionPane.showMessageDialog(frame, "Invalid Email! Enter a valid email address.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (chkAddress.isSelected() && !addressField.getText().trim().matches(addressPattern)) {
+            JOptionPane.showMessageDialog(frame, "Invalid Address! Only alphanumeric characters and basic punctuation are allowed.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+    
     private void resetFieldsAndCheckboxes() {
     	nameField.setEditable(false);
     	salaryField.setEditable(false);
@@ -335,6 +373,8 @@ public class UpdateEmployee {
                 phoneField.setText(String.valueOf(phone));
                 emailField.setText(email);
                 addressField.setText(address);
+                
+                showSetButtonAndCheckboxes(); // Show components if employee exists
             } else {
                 JOptionPane.showMessageDialog(frame, "No employee found with the given ID!", "No Results", JOptionPane.WARNING_MESSAGE);
             }
