@@ -45,12 +45,14 @@ export default function Search() {
       <main className="main-content">
         <section className='welcome-section'>
           <form onSubmit={handleSubmit}>
-            <div className='form-group'>
+            <div className='search-container'>
                 <input 
                   value={id}
                   onChange={(e) => setId(e.target.value)}
                   type="text" 
                   placeholder="Search by id" 
+                  required
+                  className='search-input'
                 />
                 <button type='submit' className='search-button'>
                   Search
@@ -63,8 +65,8 @@ export default function Search() {
           {/* Display employee details */}
           {employee && (
             <div className='employee-details'>
-              <h2>Employee Details</h2>
-              {/* <p><strong>ID:</strong> {employee.id}</p> */}
+              <h2>EMPLOYEE DETAILS</h2>
+              <p><strong>ID:</strong> {employee.id}</p>
               <p><strong>Name:</strong> {employee.name}</p>
               <p><strong>Salary:</strong> {employee.salary}</p>
               <p><strong>Phone:</strong> {employee.phone}</p>
