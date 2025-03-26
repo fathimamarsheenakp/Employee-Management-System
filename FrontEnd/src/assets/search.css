@@ -84,7 +84,7 @@
 }
 
 .edit-button:active {
-    background-color: #004085; /* Even darker blue on click */
+    background-color: var(--primary); /* Revert to original color on click */
     transform: translateY(0); /* Reset lift on click */
 }
 
