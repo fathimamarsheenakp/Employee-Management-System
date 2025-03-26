@@ -1,11 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FiArrowRight } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
-    const [showActions, setShowActions] = useState(false);
+    const [showActions, setShowActions] = useState(() => {
+        return localStorage.getItem('showActions') === "true";
+    });
     const actionButtonsRef = useRef(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem("showActions", showActions);
+    }, [showActions]);
 
     const handleGetStarted = () => {
         setShowActions(true);
