@@ -46,7 +46,7 @@ export default function GetAll() {
         <div className='home-container'>
             <header className="header">
                 <div className="header-content">
-                    <h1>Employee List</h1>
+                        <h1>Employee List</h1>
                 </div>
             </header>
 

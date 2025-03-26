@@ -15,7 +15,11 @@ export default function Home() {
     }
 
     const handleViewAllEmployees = () => {
-        navigate('/getAll');
+        navigate('/view');
+    }
+
+    const handleAddNewEmployee = () => {
+        navigate('/add');
     }
 
     return (
@@ -47,7 +51,7 @@ export default function Home() {
                     {showActions && (
                         <div className="action-buttons" ref={actionButtonsRef}>
                             <button className="action-button" onClick={handleViewAllEmployees}>View All Employees</button>
-                            <button className="action-button">Add New Employee </button>
+                            <button className="action-button" onClick={handleAddNewEmployee}>Add New Employee </button>
                             <button className="action-button">Search Employee</button>
                             <button className="action-button">Update Employee Details</button>
                             <button className="action-button">Remove Employee</button>
