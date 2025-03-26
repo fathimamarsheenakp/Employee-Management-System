@@ -97,6 +97,11 @@ export default function GetAll() {
                     )}
                 </section>
             </main>
+
+            {/* Footer */}
+            <footer className="footer">
+                <p>&copy; {new Date().getFullYear()} EmployeePro. All rights reserved.</p>
+            </footer>
         </div>
     );
 }
