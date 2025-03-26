@@ -134,6 +134,11 @@ export default function Add() {
                 </form>
             </section>
         </main>
+
+        {/* Footer */}
+        <footer className="footer">
+                <p>&copy; {new Date().getFullYear()} EmployeePro. All rights reserved.</p>
+        </footer>
     </div>
   )
 }
