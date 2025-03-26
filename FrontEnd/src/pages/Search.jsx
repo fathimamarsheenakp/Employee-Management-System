@@ -10,7 +10,7 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent page reload on form submit
 
-    if (!id.trim()) {
+    if (!id.trim() || isNaN(id)) {
       setError('Please enter a valid ID.');
       setEmployee(null);
       return;
@@ -27,6 +27,7 @@ export default function Search() {
       .then((data) => {
         setEmployee(data); // Set employee details
         setError(''); // Clear any previous error
+        setId(''); // Clear the input field
       })
       .catch((error) => {
         console.error('Error fetching employee:', error);
@@ -49,7 +50,7 @@ export default function Search() {
                 <input 
                   value={id}
                   onChange={(e) => setId(e.target.value)}
-                  type="text" 
+                  type="number" 
                   placeholder="Search by id" 
                   required
                   className='search-input'
