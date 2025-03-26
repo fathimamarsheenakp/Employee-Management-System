@@ -1,0 +1,31 @@
+.employee-details {
+    margin-top: 2rem; /* Add spacing above the details section */
+    padding: 1.5rem;
+    background-color: #fff; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 900px; /* Limit the width of the details section */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+    font-family: Arial, sans-serif;
+}
+
+.employee-details h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #015422; /* Darker color for the heading */
+    text-align: center; /* Center the heading */
+}
+
+.employee-details p {
+    margin: 0.5rem 0; /* Add spacing between paragraphs */
+    font-size: 1.5rem;
+    color: #555; /* Slightly lighter color for text */
+    text-align: justify;
+    padding-left: 50px;
+
+}
+
+.employee-details p strong {
+    color: #333; /* Darker color for labels */
+}
