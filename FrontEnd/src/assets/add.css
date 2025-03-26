@@ -1,0 +1,80 @@
+.form-group {
+    display: flex;
+    align-items: center; /* Align label and input vertically */
+    justify-content: space-between; /* Add space between label and input */
+    gap: 1rem; /* Add spacing between label and input */
+}
+
+.form-group label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    flex: 1; /* Label takes up 1 part of the available space */
+    text-align: right; /* Align label text to the right */
+    margin-right: 1rem; /* Add spacing between label and input */
+}
+
+.form-group input,
+.form-group textarea {
+    flex: 2; /* Input takes up 2 parts of the available space */
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 100%; /* Ensure inputs take full width of their column */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4caf50; /* Highlight border on focus */
+}
+
+/* Submit button styling */
+.submit-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.submit-button:active {
+    background-color: #3e8e41;
+    transform: translateY(0); /* Reset lift on click */
+}
+
+.main-content {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* padding: 2rem; */
+    background-color: #f9f9f9;
+}
+
+.welcome-section {
+    width: 100%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+
+
