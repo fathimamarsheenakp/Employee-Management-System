@@ -20,8 +20,8 @@ public class EmployeeService {
 	}
 	
 	public Employee getEmployee(int id) {
-		Employee emp = employeeRepository.findById(id).get();
-		return emp;
+	    return employeeRepository.findById(id)
+	        .orElseThrow(() -> new RuntimeException("Employee with ID " + id + " not found"));
 	}
 	
 	public Employee addEmployee(Employee emp) {

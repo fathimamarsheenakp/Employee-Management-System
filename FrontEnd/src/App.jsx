@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GetAll from "./pages/GetAll";
 import Add from "./pages/Add";
 import Search from "./pages/Search";
+import Update from "./pages/Update";
+import Edit from "./pages/Edit";
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
         <Route path="/view" element={<GetAll/>}/>
         <Route path="/add" element={<Add/>}/>
         <Route path="/search" element={<Search/>}/>
+        <Route path="/update" element={<Update/>}/>
+        <Route path="/edit/:id" element={<Edit />} />
 \      </Routes>
     </Router>
   )

@@ -32,6 +32,10 @@ export default function Home() {
         navigate('/search');
     }
 
+    const handleUpdateEmployee = () => {
+        navigate('/update');
+    }
+
     return (
         <div className="home-container">
             {/* Header */}
@@ -63,7 +67,7 @@ export default function Home() {
                             <button className="action-button" onClick={handleViewAllEmployees}>View All Employees</button>
                             <button className="action-button" onClick={handleAddNewEmployee}>Add New Employee </button>
                             <button className="action-button" onClick={handleSearchEmployee}>Search Employee</button>
-                            <button className="action-button">Update Employee Details</button>
+                            <button className="action-button" onClick={handleUpdateEmployee}>Update Employee Details</button>
                             <button className="action-button">Remove Employee</button>
                             <button className="action-button">Export Employee Data</button>
                         </div>
