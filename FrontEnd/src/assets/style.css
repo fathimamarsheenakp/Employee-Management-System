@@ -12,7 +12,7 @@
   font-family: "Inter", "Segoe UI", Roboto, sans-serif;
   color: var(--text-dark);
   background-color: var(--background-light);
-  line-height: 1.6;
+  line-height: 1;
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -167,4 +167,56 @@
 
 .search-button:hover {
     background-color: var(--primary-dark);
+}
+
+.edit-container {
+  margin-top: 2rem; /* Add spacing above the button */
+  text-align: center; /* Center the button */
+}
+
+.edit-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: var(--primary-dark); /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.edit-button:active {
+  background-color: var(--primary); /* Revert to original color on click */
+  transform: translateY(0); /* Reset lift on click */
+}
+
+.delete-container {
+  margin-top: 2rem; /* Add spacing above the button */
+  text-align: center; /* Center the button */
+}
+
+.delete-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: darkred; /* Darker red on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.delete-button:active {
+  background-color: red; /* Revert to original color on click */
+  transform: translateY(0); /* Reset lift on click */
 }

@@ -7,6 +7,7 @@ import Add from "./pages/Add";
 import Search from "./pages/Search";
 import Update from "./pages/Update";
 import Edit from "./pages/Edit";
+import Delete from "./pages/Delete";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/search" element={<Search/>}/>
         <Route path="/update" element={<Update/>}/>
         <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/delete" element={<Delete />} />
 \      </Routes>
     </Router>
   )
