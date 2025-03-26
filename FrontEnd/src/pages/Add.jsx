@@ -19,6 +19,32 @@ export default function Add() {
             return;
         }
 
+        if (!name.trim()) {
+            alert('Name is required and cannot be empty.');
+            return;
+        }
+        if (!/^[a-zA-Z\s]+$/.test(name)) {
+            alert('Name should only contain letters and spaces.');
+            return;
+        }
+        if (!salary || isNaN(salary) || parseFloat(salary) <= 0) {
+            alert('Salary must be a positive number.');
+            return;
+        }
+        if (!phone.trim() || !/^\d{10}$/.test(phone)) {
+            alert('Phone number must be a valid 10-digit number.');
+            return;
+        }
+        if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        if (!address.trim()) {
+            alert('Address is required and cannot be empty.');
+            return;
+        }
+
         const employeeData = {
             name, 
             salary: parseFloat(salary), // Convert salary to number 
