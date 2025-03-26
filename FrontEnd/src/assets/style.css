@@ -139,3 +139,32 @@
       flex-direction: column;
   }
 }
+
+.search-container {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.search-input {
+    width: 40%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+}
+
+.search-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: var(--primary-dark);
+}

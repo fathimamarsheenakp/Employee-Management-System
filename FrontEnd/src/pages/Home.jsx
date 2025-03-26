@@ -1,15 +1,21 @@
 import React, { useRef, useState } from 'react';
 import { FiArrowRight } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
     const [showActions, setShowActions] = useState(false);
     const actionButtonsRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleGetStarted = () => {
         setShowActions(true);
         setTimeout(() => {
             actionButtonsRef.current.scrollIntoView({ behavior: 'smooth' });
         }, 100);
+    }
+
+    const handleViewAllEmployees = () => {
+        navigate('/getAll');
     }
 
     return (
@@ -40,7 +46,7 @@ export default function Home() {
                     {/* Action Buttons */}
                     {showActions && (
                         <div className="action-buttons" ref={actionButtonsRef}>
-                            <button className="action-button">View All Employees</button>
+                            <button className="action-button" onClick={handleViewAllEmployees}>View All Employees</button>
                             <button className="action-button">Add New Employee </button>
                             <button className="action-button">Search Employee</button>
                             <button className="action-button">Update Employee Details</button>
