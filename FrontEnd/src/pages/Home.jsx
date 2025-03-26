@@ -22,6 +22,10 @@ export default function Home() {
         navigate('/add');
     }
 
+    const handleSearchEmployee = () => {
+        navigate('/search');
+    }
+
     return (
         <div className="home-container">
             {/* Header */}
@@ -52,7 +56,7 @@ export default function Home() {
                         <div className="action-buttons" ref={actionButtonsRef}>
                             <button className="action-button" onClick={handleViewAllEmployees}>View All Employees</button>
                             <button className="action-button" onClick={handleAddNewEmployee}>Add New Employee </button>
-                            <button className="action-button">Search Employee</button>
+                            <button className="action-button" onClick={handleSearchEmployee}>Search Employee</button>
                             <button className="action-button">Update Employee Details</button>
                             <button className="action-button">Remove Employee</button>
                             <button className="action-button">Export Employee Data</button>
