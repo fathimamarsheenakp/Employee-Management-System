@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "../assets/add.css";
 
 export default function Add() {
 
@@ -67,63 +68,65 @@ export default function Add() {
         <main className="main-content">
             <section className='welcome-section'>
                 <form className='add-form' onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <label htmlFor='name'>Name:</label>
-                        <input 
-                            type='text' 
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            id='name' 
-                            name='name' 
-                            required 
-                        />
-                    </div>
+                    <div className='form-container'>
+                        <div className='form-group'>
+                            <label htmlFor='name'>Name:</label>
+                            <input 
+                                type='text' 
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                id='name' 
+                                name='name' 
+                                required 
+                            />
+                        </div>
 
-                    <div className='form-group'>
-                        <label htmlFor='salary'>Salary:</label>
-                        <input 
-                            type='number' 
-                            value={salary}
-                            onChange={(e) => setSalary(e.target.value)}
-                            id='salary' 
-                            name='salary' 
-                            required 
-                        />
-                    </div>
+                        <div className='form-group'>
+                            <label htmlFor='salary'>Salary:</label>
+                            <input 
+                                type='number' 
+                                value={salary}
+                                onChange={(e) => setSalary(e.target.value)}
+                                id='salary' 
+                                name='salary' 
+                                required 
+                            />
+                        </div>
 
-                    <div className='form-group'>
-                        <label htmlFor='phone'>Phone Number:</label>
-                        <input 
-                            type='tel' 
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            id='phone' 
-                            name='phone' 
-                            required 
-                        />
-                    </div>
+                        <div className='form-group'>
+                            <label htmlFor='phone'>Phone Number:</label>
+                            <input 
+                                type='tel' 
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                id='phone' 
+                                name='phone' 
+                                required 
+                            />
+                        </div>
 
-                    <div className='form-group'>
-                        <label htmlFor='email'>Email:</label>
-                        <input 
-                            type='email' 
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            id='email' 
-                            name='email' 
-                            required 
-                        />
-                    </div>
+                        <div className='form-group'>
+                            <label htmlFor='email'>Email:</label>
+                            <input 
+                                type='email' 
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                id='email' 
+                                name='email' 
+                                required 
+                            />
+                        </div>
 
-                    <div className='form-group'>
-                        <label htmlFor='address'>Address:</label>
-                        <textarea 
-                            id='address' 
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            name='address' 
-                            required>
-                        </textarea>
+                        <div className='form-group'>
+                            <label htmlFor='address'>Address:</label>
+                            <textarea 
+                                id='address' 
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                name='address' 
+                                required>
+                            </textarea>
+                        </div>
                     </div>
 
                     <div className='form-group'>
@@ -131,6 +134,7 @@ export default function Add() {
                             Submit
                         </button>
                     </div>
+
                 </form>
             </section>
         </main>
